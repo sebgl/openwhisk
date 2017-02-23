@@ -52,7 +52,7 @@
         -e SERVICE_CHECK_TIMEOUT=2s
         -e SERVICE_CHECK_INTERVAL=15s
         -v {{whisk_logs_dir}}/invoker{{play_hosts.index(inventory_hostname)}}:/logs
-        -v {{dockerInfo["json"]["DockerRootDir"]}}/containers/:/containers
+        -v /var/lib/docker/containers/:/containers
         -p {{invoker.port + play_hosts.index(inventory_hostname)}}:8080
         {{docker_registry}}{{ docker_image_prefix }}/invoker:{{docker_image_tag}}
         /bin/sh -c "/invoker/bin/invoker {{play_hosts.index(inventory_hostname)}} >> /logs/invoker{{play_hosts.index(inventory_hostname)}}_logs.log 2>&1"
