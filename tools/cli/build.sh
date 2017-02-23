@@ -29,6 +29,9 @@ build_cli () {
 
   export GOARCH=$arch
 
+  # fix alpine
+  export CGO_ENABLED=0
+
   cd /src/github.com/go-whisk-cli
   go build -ldflags "-X main.CLI_BUILD_TIME=`date -u '+%Y-%m-%dT%H:%M:%S%:z'`" -v -o build/$os/$arch/$bin main.go;
 };
